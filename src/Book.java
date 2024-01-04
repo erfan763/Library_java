@@ -1,6 +1,6 @@
 public class Book {
     //شماره کتاب
-    public int ISBN;
+    public String ISBN;
     public String Name;
     public String Author;
     //خلاصه کتاب
@@ -9,7 +9,7 @@ public class Book {
     public BookStatus bookStatus;
 
 
-    public Book(int ISBN, String Name, String Author, String Abstract, String AgeGroup, BookStatus bookStatus) {
+    public Book(String ISBN, String Name, String Author, String Abstract, String AgeGroup, BookStatus bookStatus) {
         this.ISBN = ISBN;
         this.Name = Name;
         this.Author = Author;

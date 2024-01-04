@@ -1,3 +1,10 @@
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,9 +38,19 @@ public class Books extends BookManagement {
         Reserver = reserver;
     }
 
+
+
+    public Books() {
+        loadBooksFromJson();
+    }
+
+
+
     @Override
     public void register(Map<String, Book> bookProperties) {
-      return ;
+        HashMap<String, Book> newBook = new HashMap<>(bookProperties);
+        BookList.add(newBook);
+        saveBooksToJson();
     }
 
     @Override
@@ -54,5 +71,32 @@ public class Books extends BookManagement {
     @Override
     public String lastStatus() {
         return null;
+    }
+
+
+    private void loadBooksFromJson() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("BookList.json"));
+            Gson gson = new Gson();
+            Type type = new TypeToken<ArrayList<HashMap<String, Book>>>(){}.getType();
+            BookList = gson.fromJson(reader, type);
+            if (BookList == null) {
+                BookList = new ArrayList<>();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveBooksToJson() {
+        try {
+            FileWriter writer = new FileWriter("BookList.json");
+            Gson gson = new Gson();
+            gson.toJson(BookList, writer);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
