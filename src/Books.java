@@ -37,7 +37,7 @@ public class Books extends BookManagement {
         Reserver = reserver;
     }
 
-
+    UserManagement userManagement = new UserManagement();
 
     public Books() {
         loadBooksFromJson();
@@ -244,6 +244,7 @@ public class Books extends BookManagement {
 
     public void borrowBookUser(int ISBN, User user) {
         Book bookToBorrow = findBookByISBN(ISBN);
+
         System.out.println(bookToBorrow);
         if (bookToBorrow != null) {
             if (bookToBorrow.bookStatus == BookStatus.AVAILABLE) {
@@ -261,7 +262,7 @@ public class Books extends BookManagement {
                             }
                         }
 
-                        // have bug. i should update reservd in user (update isbn)
+                        userManagement.updateUserReserved(user.getID(),ISBN);
                         bookToBorrow.bookStatus = BookStatus.BORROWED;
                         user.setReserved(ISBN);
                         HashMap<String, Book> revBook = new HashMap<String, Book>();
@@ -301,6 +302,7 @@ public class Books extends BookManagement {
                                 }
                             }
                         }
+                        userManagement.updateUserReserved(user.getID(),-1);
                         bookToBorrow.bookStatus = BookStatus.AVAILABLE;
                         user.setReserved(-1);
 

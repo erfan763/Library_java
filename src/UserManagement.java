@@ -39,6 +39,8 @@ public class UserManagement {
 
     }
 
+
+
     public void printListOfUsers() {
         if (usersList != null && !usersList.isEmpty()) {
             for (User user : usersList) {
@@ -77,4 +79,16 @@ public class UserManagement {
         return true;
     }
 
+
+    public void updateUserReserved(int userId,int reservedCode){
+
+        for (int i = 0; i < usersList.size(); i++) {
+            if(usersList.get(i).getID() == userId) {
+                usersList.get(i).setReserved(reservedCode);
+                break;
+            }
+        }
+        JsonFileHandler jsonFileHandler = new JsonFileHandler();
+        jsonFileHandler.writeUsersToJson(this.usersList, "Users.json");
+    }
 }

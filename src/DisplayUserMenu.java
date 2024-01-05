@@ -58,7 +58,6 @@ public class DisplayUserMenu {
                     library.returnBookUser(user);
                     break;
                 case 4:
-
                     ArrayList<HashMap<String, Book>> bookList = library.getBookList();
                     if (bookList != null && !bookList.isEmpty()) {
                         for (HashMap<String, Book> bookMap : bookList) {
