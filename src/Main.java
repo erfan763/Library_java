@@ -3,14 +3,18 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+
         var isLogin = true;
 
         do {
-            System.out.println("Are you an admin or a simple user? Enter 'admin' or 'user' or 'closeProgram': ");
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Are you an admin or a simple user? Enter 'admin' or 'user' or finally 'closeProgram': ");
             String userType = scanner.nextLine();
             if(userType == "closeProgram") {
                 isLogin = false;
+            }
+            if(!isLogin) {
+                scanner.close();
             }
             if (userType.equalsIgnoreCase("admin")) {
 
@@ -64,8 +68,5 @@ public class Main {
 
 
         } while (isLogin);
-
-        scanner.close();
-
     }
 }

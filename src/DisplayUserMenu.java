@@ -79,7 +79,5 @@ public class DisplayUserMenu {
                     System.out.println("Invalid choice. Please enter a valid option.");
             }
         } while (choice != 5);
-
-        scanner.close();
     }
 }

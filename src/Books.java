@@ -260,6 +260,8 @@ public class Books extends BookManagement {
                                 }
                             }
                         }
+
+                        // have bug. i should update reservd in user (update isbn)
                         bookToBorrow.bookStatus = BookStatus.BORROWED;
                         user.setReserved(ISBN);
                         HashMap<String, Book> revBook = new HashMap<String, Book>();

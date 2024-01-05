@@ -79,12 +79,19 @@ public class DisplayAdminMenu {
                     }
                     break;
                 case 4:
-                    // Logic for borrowing a book
-                    // ...
+                    System.out.println("Enter book ISBN: ");
+                    int bookIsbn = scanner.nextInt();
+                    System.out.println("Enter username of user: ");
+                    String usernameForBorrowBook = scanner.nextLine();
+                    User userForBorrowBook = userManagement.findUserByUsername(usernameForBorrowBook);
+                    library.borrowBookUser(bookIsbn, userForBorrowBook);
+
                     break;
                 case 5:
-                    // Logic for returning a book
-                    // ...
+                    System.out.println("Enter username of user: ");
+                    String usernameForReturnBook = scanner.nextLine();
+                    User userForReturnBook = userManagement.findUserByUsername(usernameForReturnBook);
+                    library.returnBookUser(userForReturnBook);
                     break;
                 case 6:
                     System.out.println("List of Users:");
@@ -128,6 +135,5 @@ public class DisplayAdminMenu {
             }
         } while (choice != 9);
 
-        scanner.close();
     }
 }

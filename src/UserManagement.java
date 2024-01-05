@@ -50,6 +50,14 @@ public class UserManagement {
     }
 
 
+    public User findUserByUsername(String username) {
+        for (int i = 0; i < usersList.size(); i++) {
+            if(usersList.get(i).getUsername() == username){
+                return  usersList.get(i);
+            }
+        }
+        return null;
+    }
 
     public boolean isUsernameUnique(String username) {
         for (User user : usersList) {
